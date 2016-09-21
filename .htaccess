@@ -1,3 +1,3 @@
 RewriteEngine on
-RewriteCond $1 !^(index\.php|images|robots\.txt)
-RewriteRule ^(.*)$ /ci3-template/index.php/$1 [L]
+RewriteCond $1 !^(index\.php|images|.+\.css$|.+\.js$|.+\.png$|.+\.jpg$|robots\.txt)
+RewriteRule ^(.*)$ /ci3-skeleton/index.php/$1 [L]
