@@ -54,9 +54,8 @@ class Login extends CI_Controller {
         $userid = $this->input->post('userid');
         $password = $this->input->post('password');
 
-        echo $password;
-
-        if($this->users_model->can_login($userid, $password)){
+        $result = $this->users_model->selectByKey($userid, $password);
+        if($result){
             // ログイン出来たらセッション情報セット
             $data = array(
                 'userid' => $this->input->post('userid'),

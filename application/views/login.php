@@ -17,22 +17,31 @@
             <?php if($auth_failed):?><span style="color:red;">ユーザIDまたはパスワードが違います。</span><?php endif;?>
             <h4>ログイン画面</h4>
             <hr>
-            <div class="_c-row _c-row--middle">
-                <div class="_c-row__col--1-3" style="text-align:right">ユーザID：</div>
-                <div class="_c-row__col--1-3"><?php echo form_input('userid', $this->input->post('userid')); ?></div>
-            </div>
-            <div class="_c-row _c-row--middle">
-                <div class="_c-row__col--1-3" style="text-align:right">パスワード：</div>
-                <div class="_c-row__col--1-3"><?php echo form_password('password'); ?></div>
-            </div>
-            <br/>
-            <div class="_c-row _c-row--middle">
-                <div class="_c-row__col--1-3"></div>
+            <div class="_c-row _c-row--center">
                 <div class="_c-row__col--1-3">
-                    <input type="submit" name="login_submit" value="ログイン" class="_c-btn">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>ユーザID：</th>
+                                <td><input type="text" name="userid" id="userid" value="<?php echo $this->input->post("userid");?>"/></td>
+                            </tr>
+                            <tr>
+                                <th>パスワード：</th>
+                                <td><input type="password" name="password" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan=2 style="text-align:center;">
+                                    <input type="submit" name="login_submit" value="ログイン" class="_c-btn">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         <?php echo form_close();?>
     </div>
+    <script>
+        document.querySelector("#userid").focus();
+    </script>
 </body>
 </html>

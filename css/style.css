@@ -1,0 +1,20 @@
+.search-result{
+    width: 100%;
+    border-collapse: collapse;
+}
+.search-result th{
+    padding: 6px;
+    vertical-align: middle;
+    color: #333;
+    background-color: #eee;
+    border: 1px solid #b9b9b9;
+}
+.search-result td{
+    padding: 6px;
+    background-color: #fff;
+    border: 1px solid #b9b9b9;
+}
+
+.numeric {
+    text-align: right;
+}

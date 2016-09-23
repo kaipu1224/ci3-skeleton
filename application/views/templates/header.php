@@ -3,7 +3,8 @@
     <head>
         <meta charset="utf-8">
         <title><?php echo $title;?></title>
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/basis.min.css"> 
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/basis.min.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css">  
     </head>
     <body>
         <div class="_c-container">
