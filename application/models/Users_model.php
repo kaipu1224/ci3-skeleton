@@ -10,6 +10,14 @@ class Users_model extends CI_Model {
      * @param $password パスワード
      */
     public function can_login($userid, $password) {
-        return true;
+        $this->db->where("id", $userid);
+        $this->db->where("password", $password);
+        $query = $this->db->get("m_users");
+
+        if($query->num_rows() == 1){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
