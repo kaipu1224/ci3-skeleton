@@ -1,17 +1,17 @@
 <?php
 
+require("AbstractController.php");
+
 /**
  * ユーザ一覧のコントローラ
  */
-class Users_list extends CI_Controller {
+class Users_list extends AbstractController {
     function __construct(){ parent::__construct(); }
 
     public function index(){
-        if($this->session->userdata('is_logged_in')){
-            $this->search();
-        }else{
-            redirect('login/restricted');
-        }
+        parent::index();
+
+        $this->search();
     }
 
     /**

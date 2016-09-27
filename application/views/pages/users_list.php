@@ -24,8 +24,12 @@
         </table>
         <input type="submit" class="c-btn" name="search" value="検索"></input>
         <input type="submit" class="c-btn" name="clear" value="クリア"></input>
-        <?php if(count($results) > 0) : ?>
-        <hr>
+    </div>
+</div>
+<?php if(count($results) > 0) : ?>
+<hr>
+<div class="_c-row">
+    <div class="_c-row__col">
         <table class="search-result">
             <caption>
                 検索結果：<?=count($results)?>件
@@ -70,8 +74,7 @@
             <tfoot>
             </tfoot>
         </table>
-        <?php endif; ?>
     </div>
 </div>
-
+<?php endif; ?>
 <?php echo form_close();?>
