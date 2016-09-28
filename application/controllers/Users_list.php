@@ -7,13 +7,17 @@ require("AbstractController.php");
  */
 class Users_list extends AbstractController {
     // 表示件数制限
-    protected $limit = 100;
+    protected $limit = 1;
 
-    function __construct(){ parent::__construct(); }
+    function __construct(){
+        parent::__construct();
+
+        $this->load->model('code_model');
+        $this->limit = $this->code_model->getMaxDisplayCount();
+    }
 
     public function index(){
         parent::index();
-
         $this->search();
     }
 
