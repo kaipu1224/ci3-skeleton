@@ -39,16 +39,25 @@ class Users_model extends CI_Model {
     /**
      * ユーザ情報を名前で検索して取得します。
      * @param $userid ユーザID
+     * @param $name ユーザ名
+     * @param $limit 取得レコード数
+     * @param $offset オフセット
      */
-    public function selectLikeName($name) {
+    public function selectUsers($userid, $name, $limit, $offset) {
         $this->db->select("u.id, u.name, c1.code_value as is_valid, c2.code_value as permission")
-            ->from("m_users u")
-            ->like("u.name", $name, "both")
-            ->join("m_code c1", "c1.code_no = '000' and c1.code = u.is_valid","left")
+            ->from("m_users u");
+        if(strlen($userid) > 0){
+            $this->db->like("u.id", $userid, "after");
+        }
+        if(strlen($name) > 0){
+            $this->db->like("u.name", $name, "both");
+        }
+        $this->db->join("m_code c1", "c1.code_no = '000' and c1.code = u.is_valid","left")
             ->join("m_code c2", "c2.code_no = '001' and c2.code = to_char(u.permission,'FM9')","left")
-            ->order_by("u.id", "asc");
-
+            ->order_by("u.id", "asc")
+            ->limit($limit, $offset);
         $query = $this->db->get();
+        //echo $this->db->last_query();
         if($query->num_rows() == 0){
             return false;
         }else{
