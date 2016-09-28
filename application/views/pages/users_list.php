@@ -33,17 +33,20 @@
 <hr>
 <div class="_c-row">
     <div class="_c-row__col--1-2">
+        <input type="submit" name="first" value="最初" class="_c-btn"/>
         <input type="submit" name="prev" value="前" class="_c-btn"/>
     </div>
     <div class="_c-row__col--1-2" style="text-align:right;">
         <input type="submit" name="next" value="次" class="_c-btn"/>
+        <input type="submit" name="last" value="最後" class="_c-btn"/>
     </div>
 </div>
 <div class="_c-row">
     <div class="_c-row__col">
         <table class="search-result">
             <caption>
-                検索結果：<?=count($results)?>件
+                検索結果：<?=$total?>件中の <?=$offset+1?>件目から表示しています。
+                <input type="hidden" name="total" value="<?=$total?>"/>
             </caption>
             <details>
                 <summary>下記条件での検索結果です。</summary>
@@ -72,7 +75,7 @@
                 foreach($results as $row) { 
                 ?>
                 <tr>
-                    <td class="numeric"><?=$index ?></td>
+                    <td class="numeric"><?=$offset+$index ?></td>
                     <td><?=$row->id ?></td>
                     <td><?=$row->name ?></td>
                     <td><?=$row->permission ?></td>

@@ -7,7 +7,7 @@ require("AbstractController.php");
  */
 class Users_list extends AbstractController {
     // 表示件数制限
-    protected $limit = 1;
+    protected $limit = 100;
 
     function __construct(){ parent::__construct(); }
 
@@ -44,6 +44,16 @@ class Users_list extends AbstractController {
             // 次ページ
             parent::setOffset($this->limit, false);
             $this->search();
+
+        }else if(isset($form["first"])){
+            // 最初のページ
+            parent::clearOffset();
+            $this->search();
+
+        }else if(isset($form["last"])){
+            // 最後のページ
+            parent::setOffsetLast($this->limit, $this->input->post("total"));
+            $this->search();
         }
     }
 
@@ -57,9 +67,10 @@ class Users_list extends AbstractController {
         $name = $this->input->post("name");
         $offset = $this->input->post("offset");
 
-        $results = $this->users_model->selectUsers($userid, $name, $this->limit, $offset);
-        if($results){
-            $data["results"] = $results;
+        $result = $this->users_model->selectUsers($userid, $name, $this->limit, $offset);
+        if($result){
+            $data["results"] = $result["data"];
+            $data["total"] = $result["total"];
             $data["errors"] = array();
             $data["offset"] = $offset;
 

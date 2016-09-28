@@ -27,6 +27,25 @@ abstract class AbstractController extends CI_Controller {
     }
 
     /**
+     * ページネーション用のオフセットを最終ページに設定します。
+     * @param limit 表示件数
+     * @param total データ件数
+     */
+    protected function setOffsetLast($limit, $total){
+        $lastOffset = 0;
+        $remain = $total % $limit;
+
+        if($remain == 0){
+            // 余りがない場合、トータル件数から表示件数を引いたオフセットが最終ページ
+            $lastOffset = $total-$limit;
+        }else{
+            // 余りがある場合、トータル件数から余りを引いた値が最終ページ
+            $lastOffset = $total-$remain;
+        }
+        $_POST["offset"] = $lastOffset;
+    }
+
+    /**
      * ページネーション用のオフセットを設定します。
      * @param limit 表示件数
      * @param isPrev 前ページ処理判定フラグ 

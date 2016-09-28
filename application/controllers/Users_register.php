@@ -3,7 +3,7 @@
 require("AbstractController.php");
 
 /**
- * ユーザ一覧のコントローラ
+ * ユーザ登録のコントローラ
  */
 class Users_register extends AbstractController {
     function __construct(){ parent::__construct(); }
@@ -11,13 +11,14 @@ class Users_register extends AbstractController {
     public function index(){
         parent::index();
 
-        $data["title"] = "ユーザ登録";
-        $this->show($data);
+        $data = array();
+        parent::showTemplatePage($data, "pages/users_register");
     }
 
-    function show($data){
-        $this->load->view('templates/header', $data);
-        $this->load->view('pages/users_register', $data);
-        $this->load->view('templates/footer');
+    /**
+     * ページタイトルを取得します。
+     */
+    protected function getTitle(){
+        return "ユーザ登録";
     }
 }
